@@ -19,6 +19,8 @@ public:
              QLabel *floorLabel) {
         eleFloor = new QButtonGroup();
         runAndStop = new QButtonGroup();
+        display = new QButtonGroup();
+
         for (int i = 0; i <= 20; i++) {
             isFloorPushed[i] = 0;
             isUpAsked[i] = 0;
@@ -55,6 +57,7 @@ protected:
     QButtonGroup *up;
     QButtonGroup *down;
     QButtonGroup *runAndStop;
+    QButtonGroup *display;
 
     //表示电梯内某一楼层是否按下
     int isFloorPushed[21];

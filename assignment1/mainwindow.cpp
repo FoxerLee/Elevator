@@ -30,8 +30,11 @@ MainWindow::MainWindow(QWidget *parent) :
         this->isUpAsked[i] = 0;
         this->isDownAsked[i] = 0;
     }
+    //初始化第一层的显示
+    for (int i = 0; i < 5; i++) {
+        ele[i]->display->button(0)->setChecked(true);
+    }
     r = 0;
-
     QThread *t[5];
 
     this->checkAskedFloor();
@@ -334,4 +337,117 @@ void MainWindow::initButtonGroup() {
 
     this->up->setExclusive(false);
     this->down->setExclusive(false);
+
+    ele[0]->display->addButton(ui->one_floor_1, 0);
+    ele[0]->display->addButton(ui->one_floor_2, 1);
+    ele[0]->display->addButton(ui->one_floor_3, 2);
+    ele[0]->display->addButton(ui->one_floor_4, 3);
+    ele[0]->display->addButton(ui->one_floor_5, 4);
+    ele[0]->display->addButton(ui->one_floor_6, 5);
+    ele[0]->display->addButton(ui->one_floor_7, 6);
+    ele[0]->display->addButton(ui->one_floor_8, 7);
+    ele[0]->display->addButton(ui->one_floor_9, 8);
+    ele[0]->display->addButton(ui->one_floor_10, 9);
+    ele[0]->display->addButton(ui->one_floor_11, 10);
+    ele[0]->display->addButton(ui->one_floor_12, 11);
+    ele[0]->display->addButton(ui->one_floor_13, 12);
+    ele[0]->display->addButton(ui->one_floor_14, 13);
+    ele[0]->display->addButton(ui->one_floor_15, 14);
+    ele[0]->display->addButton(ui->one_floor_16, 15);
+    ele[0]->display->addButton(ui->one_floor_17, 16);
+    ele[0]->display->addButton(ui->one_floor_18, 17);
+    ele[0]->display->addButton(ui->one_floor_19, 18);
+    ele[0]->display->addButton(ui->one_floor_20, 19);
+
+    ele[1]->display->addButton(ui->two_floor_1, 0);
+    ele[1]->display->addButton(ui->two_floor_2, 1);
+    ele[1]->display->addButton(ui->two_floor_3, 2);
+    ele[1]->display->addButton(ui->two_floor_4, 3);
+    ele[1]->display->addButton(ui->two_floor_5, 4);
+    ele[1]->display->addButton(ui->two_floor_6, 5);
+    ele[1]->display->addButton(ui->two_floor_7, 6);
+    ele[1]->display->addButton(ui->two_floor_8, 7);
+    ele[1]->display->addButton(ui->two_floor_9, 8);
+
+    ele[1]->display->addButton(ui->two_floor_10, 9);
+    ele[1]->display->addButton(ui->two_floor_11, 10);
+    ele[1]->display->addButton(ui->two_floor_12, 11);
+    ele[1]->display->addButton(ui->two_floor_13, 12);
+    ele[1]->display->addButton(ui->two_floor_14, 13);
+    ele[1]->display->addButton(ui->two_floor_15, 14);
+    ele[1]->display->addButton(ui->two_floor_16, 15);
+    ele[1]->display->addButton(ui->two_floor_17, 16);
+    ele[1]->display->addButton(ui->two_floor_18, 17);
+    ele[1]->display->addButton(ui->two_floor_19, 18);
+    ele[1]->display->addButton(ui->two_floor_20, 19);
+
+    ele[2]->display->addButton(ui->three_floor_1, 0);
+    ele[2]->display->addButton(ui->three_floor_2, 1);
+    ele[2]->display->addButton(ui->three_floor_3, 2);
+    ele[2]->display->addButton(ui->three_floor_4, 3);
+    ele[2]->display->addButton(ui->three_floor_5, 4);
+    ele[2]->display->addButton(ui->three_floor_6, 5);
+    ele[2]->display->addButton(ui->three_floor_7, 6);
+    ele[2]->display->addButton(ui->three_floor_8, 7);
+    ele[2]->display->addButton(ui->three_floor_9, 8);
+
+    ele[2]->display->addButton(ui->three_floor_10, 9);
+    ele[2]->display->addButton(ui->three_floor_11, 10);
+    ele[2]->display->addButton(ui->three_floor_12, 11);
+    ele[2]->display->addButton(ui->three_floor_13, 12);
+    ele[2]->display->addButton(ui->three_floor_14, 13);
+    ele[2]->display->addButton(ui->three_floor_15, 14);
+    ele[2]->display->addButton(ui->three_floor_16, 15);
+    ele[2]->display->addButton(ui->three_floor_17, 16);
+    ele[2]->display->addButton(ui->three_floor_18, 17);
+    ele[2]->display->addButton(ui->three_floor_19, 18);
+    ele[2]->display->addButton(ui->three_floor_20, 19);
+
+    ele[3]->display->addButton(ui->four_floor_1, 0);
+    ele[3]->display->addButton(ui->four_floor_2, 1);
+    ele[3]->display->addButton(ui->four_floor_3, 2);
+    ele[3]->display->addButton(ui->four_floor_4, 3);
+    ele[3]->display->addButton(ui->four_floor_5, 4);
+    ele[3]->display->addButton(ui->four_floor_6, 5);
+    ele[3]->display->addButton(ui->four_floor_7, 6);
+    ele[3]->display->addButton(ui->four_floor_8, 7);
+    ele[3]->display->addButton(ui->four_floor_9, 8);
+
+    ele[3]->display->addButton(ui->four_floor_10, 9);
+    ele[3]->display->addButton(ui->four_floor_11, 10);
+    ele[3]->display->addButton(ui->four_floor_12, 11);
+    ele[3]->display->addButton(ui->four_floor_13, 12);
+    ele[3]->display->addButton(ui->four_floor_14, 13);
+    ele[3]->display->addButton(ui->four_floor_15, 14);
+    ele[3]->display->addButton(ui->four_floor_16, 15);
+    ele[3]->display->addButton(ui->four_floor_17, 16);
+    ele[3]->display->addButton(ui->four_floor_18, 17);
+    ele[3]->display->addButton(ui->four_floor_19, 18);
+    ele[3]->display->addButton(ui->four_floor_20, 19);
+
+    ele[4]->display->addButton(ui->five_floor_1, 0);
+    ele[4]->display->addButton(ui->five_floor_2, 1);
+    ele[4]->display->addButton(ui->five_floor_3, 2);
+    ele[4]->display->addButton(ui->five_floor_4, 3);
+    ele[4]->display->addButton(ui->five_floor_5, 4);
+    ele[4]->display->addButton(ui->five_floor_6, 5);
+    ele[4]->display->addButton(ui->five_floor_7, 6);
+    ele[4]->display->addButton(ui->five_floor_8, 7);
+    ele[4]->display->addButton(ui->five_floor_9, 8);
+
+    ele[4]->display->addButton(ui->five_floor_10, 9);
+    ele[4]->display->addButton(ui->five_floor_11, 10);
+    ele[4]->display->addButton(ui->five_floor_12, 11);
+    ele[4]->display->addButton(ui->five_floor_13, 12);
+    ele[4]->display->addButton(ui->five_floor_14, 13);
+    ele[4]->display->addButton(ui->five_floor_15, 14);
+    ele[4]->display->addButton(ui->five_floor_16, 15);
+    ele[4]->display->addButton(ui->five_floor_17, 16);
+    ele[4]->display->addButton(ui->five_floor_18, 17);
+    ele[4]->display->addButton(ui->five_floor_19, 18);
+    ele[4]->display->addButton(ui->five_floor_20, 19);
+
+    for (int j = 0; j < 5; j++) {
+        ele[j]->display->setExclusive(false);
+    }
 }

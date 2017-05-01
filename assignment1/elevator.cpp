@@ -52,6 +52,7 @@ void Elevator::eleRun(int i) {
 
         this->status = 0;
         this->statusLabel->setText("STAY");
+        this->display->button(nowFloor-1)->setChecked(true);
     }
     if (i == 1) {
         for (int j = 0; j < 20; j++) {
@@ -63,10 +64,15 @@ void Elevator::eleRun(int i) {
 
         //清空所有请求
         for (int j = 1; j <= 20; j++) {
-            this->isUpAsked[j] = 0;
-            this->up->button(j-1)->setChecked(false);
-            this->isDownAsked[j] = 0;
-            this->down->button(j-1)->setChecked(false);
+            if (this->isUpAsked[j] == 1) {
+                this->isUpAsked[j] = 0;
+                this->up->button(j-1)->setChecked(false);
+            }
+            if (this->isDownAsked[j] == 1) {
+                this->isDownAsked[j] = 0;
+                this->down->button(j-1)->setChecked(false);
+            }
+
 
             this->isFloorPushed[j] = 0;
             this->eleFloor->button(j-1)->setChecked(false);
@@ -75,6 +81,7 @@ void Elevator::eleRun(int i) {
         }
         this->status = -1;
         this->statusLabel->setText("ERROR");
+        this->display->button(nowFloor-1)->setChecked(false);
     }
 }
 
@@ -103,7 +110,9 @@ void Elevator::eleMove(int i) {
         while(t.elapsed()<1000)
             QCoreApplication::processEvents();
 
+        this->display->button(nowFloor-1)->setChecked(false);
         this->nowFloor += 1;
+        this->display->button(nowFloor-1)->setChecked(true);
         this->floorLabel->setNum(this->nowFloor);
     }
     if (i == 2) {
@@ -114,7 +123,9 @@ void Elevator::eleMove(int i) {
         while(t.elapsed()<1000)
             QCoreApplication::processEvents();
 
+        this->display->button(nowFloor-1)->setChecked(false);
         this->nowFloor -= 1;
+        this->display->button(nowFloor-1)->setChecked(true);
         this->floorLabel->setNum(this->nowFloor);
     }
 }

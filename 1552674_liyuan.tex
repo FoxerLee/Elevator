@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{CJK}
+\usepackage{indentfirst}
+\usepackage{anysize}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{url}
+
+%标题缩进
+\usepackage[bf, small]{titlesec}
+    \titleformat{\section}{\bf\large}{\thesection.\,}{0.24em}{}
+    \titlespacing{\section}{0cm}{*1.5}{*1.1}
+    \titleformat{\subsection}{\bf}{\thesubsection.\enspace}{0.5em}{}
+    \titlespacing{\subsection}{15pt}{*1.5}{*1.1}
+    \titleformat{\subsubsection}{}{\thesubsubsection.\,}{0.24em}{}
+    \titlespacing{\subsubsection}{30pt}{*1.5}{*1.1}
+
+\linespread{1.5}
+
+
+\marginsize{3.5cm}{3.5cm}{2cm}{2cm}
+\setlength{\parindent}{2em}
+
+\newcolumntype{L}[1]{>{\vspace{0.5em}\begin{minipage}{#1}\raggedright\let\newline\\
+\arraybackslash\hspace{0pt}}m{#1}<{\end{minipage}\vspace{0.5em}}}
+\newcolumntype{R}[1]{>{\vspace{0.5em}\begin{minipage}{#1}\raggedleft\let\newline\\
+\arraybackslash\hspace{0pt}}m{#1}<{\end{minipage}\vspace{0.5em}}}
+\newcolumntype{C}[1]{>{\vspace{0.5em}\begin{minipage}{#1}\centering\let\newline\\
+\arraybackslash\hspace{0pt}}m{#1}<{\end{minipage}\vspace{0.5em}}}
+
+
+%使得图片显示对应章节
+\renewcommand\thefigure{\thesection.\arabic{figure}}
+\makeatletter
+\@addtoreset{figure}{section}
+\makeatother
+
+\begin{document} 
+\begin{CJK}{UTF8}{gbsn}
+
+\newcommand*{\titleGP}{\begingroup % Create the command for including the title page in the document
+\centering % Center all text
+\vspace*{\baselineskip} % White space at the top of the page
+
+\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal line
+\rule{\textwidth}{0.4pt}\\[\baselineskip] % Thin horizontal line
+
+{\LARGE 基于多线程的电梯调度系统 \\ \vspace{2em} \begin{large} 操作系统课程设计 \end{large}}\\[0.2\baselineskip] % Title
+
+\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal line
+\rule{\textwidth}{1.6pt}\\[\baselineskip] % Thick horizontal line
+
+\scshape % Small caps
+%利用操作系统中的多线程思想，自我实现电梯调度算法 \\[\baselineskip] % Tagline(s) or further description
+operating system,  Spring 2017\par % Location and year
+
+\vspace*{2\baselineskip} % Whitespace between location/year and editors
+
+ By \\[\baselineskip]
+{\Large1552674 李源 \par} % Editor list
+
+
+\vfill % Whitespace between editor names and publisher logo
+
+{\itshape Tongji University \\ School of Software Engineering \par}
+
+\endgroup}
+
+
+\titleGP % This command includes the title page
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{项目背景}
+\subsection{项目需求}
+某一栋楼共有20层，五部互相关联的电梯，请基于线程的思想，模拟实现一个电梯调度的程序。程序中的功能包含以下部分：
+
+（1）电梯内有楼层选择按钮、警报按钮；
+
+（2）电梯外每一层有上行按钮、下行按钮；
+
+（3）对于每一部电梯，有控制其工作、不工作的两个按钮；
+
+（4）每一部电梯，能够显示所在楼层、运行状态、开关门状态。
+
+
+\subsection{项目目的}
+
+（1）通过控制电梯调度，实现操作系统调度过程；
+
+（2）学习特定环境下多线程编程方法；
+
+（3）学习调度算法。
+
+\vspace{3em}
+
+\section{项目分析}
+根据实际情况即项目需求，可将电梯的调度分为两个部分，本文档首先对两个部分的需求分别进行分析，构建算法，随后再考虑两个部分如何实现联系。两个部分分别为：
+
+（1）人在电梯内部，按下楼层，电梯将人送到指定楼层；
+
+（2）人在电梯外某一层，按下向上或向下按钮，选择一部电梯来接人。
+
+\subsection{电梯内部}
+当人处在电梯内部时，可以
+
+
+
+\end{CJK}
+\end{document}

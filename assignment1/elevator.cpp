@@ -18,11 +18,11 @@ void Elevator::setPushedFloor(int i) {
     if(!this->eleFloor->button(i)->isChecked()) {
         this->eleFloor->button(i)->setChecked(true);
     }
-    cout << isFloorPushed[i+1] << endl;
+//    cout << isFloorPushed[i+1] << endl;
 }
 
 void Elevator::setAskedFloor(int status, int i, int number) {
-    cout << "ele " << this->eleNumber << endl;
+//    cout << "ele " << this->eleNumber << endl;
     if (this->eleNumber == number) {
         if (status == 1) {
             this->isUpAsked[i] = 1;
@@ -34,9 +34,9 @@ void Elevator::setAskedFloor(int status, int i, int number) {
 }
 
 void Elevator::startScheduler() {
-
     this->checkPushedFloor();
     this->eleScheduler();
+
 
 }
 
@@ -52,7 +52,10 @@ void Elevator::eleRun(int i) {
 
         this->status = 0;
         this->statusLabel->setText("STAY");
+        this->display->button(nowFloor-1)->setEnabled(true);
         this->display->button(nowFloor-1)->setChecked(true);
+        this->run = 0;
+        this->eleScheduler();
     }
     if (i == 1) {
         for (int j = 0; j < 20; j++) {
@@ -72,8 +75,6 @@ void Elevator::eleRun(int i) {
                 this->isDownAsked[j] = 0;
                 this->down->button(j-1)->setChecked(false);
             }
-
-
             this->isFloorPushed[j] = 0;
             this->eleFloor->button(j-1)->setChecked(false);
 
@@ -82,11 +83,14 @@ void Elevator::eleRun(int i) {
         this->status = -1;
         this->statusLabel->setText("ERROR");
         this->display->button(nowFloor-1)->setChecked(false);
+        this->display->button(nowFloor-1)->setEnabled(false);
+        this->run = -1;
     }
 }
 
 //实现电梯的开门和关门
 void Elevator::eleDoor() {
+
     this->doorLabel->setText("OPENED");
     //这里将该线程暂停一定时间
     QTime t;
@@ -101,32 +105,40 @@ void Elevator::eleDoor() {
 
 //实现电梯的上行和下行
 void Elevator::eleMove(int i) {
+    if (this->status != -1) {
+        if (i == 1) {
+            this->statusLabel->setText("UP");
+            //这里将该线程暂停一定时间
+            QTime t;
+            t.start();
+            while(t.elapsed()<1000)
+                QCoreApplication::processEvents();
+            if (this->status != -1) {
+                this->display->button(nowFloor-1)->setChecked(false);
+                this->display->button(nowFloor-1)->setEnabled(false);
+                this->nowFloor += 1;
+                this->display->button(nowFloor-1)->setEnabled(true);
+                this->display->button(nowFloor-1)->setChecked(true);
+                this->floorLabel->setNum(this->nowFloor);
+            }
 
-    if (i == 1) {
-        this->statusLabel->setText("UP");
-        //这里将该线程暂停一定时间
-        QTime t;
-        t.start();
-        while(t.elapsed()<1000)
-            QCoreApplication::processEvents();
-
-        this->display->button(nowFloor-1)->setChecked(false);
-        this->nowFloor += 1;
-        this->display->button(nowFloor-1)->setChecked(true);
-        this->floorLabel->setNum(this->nowFloor);
-    }
-    if (i == 2) {
-        this->statusLabel->setText("DOWN");
-        //这里将该线程暂停一定时间
-        QTime t;
-        t.start();
-        while(t.elapsed()<1000)
-            QCoreApplication::processEvents();
-
-        this->display->button(nowFloor-1)->setChecked(false);
-        this->nowFloor -= 1;
-        this->display->button(nowFloor-1)->setChecked(true);
-        this->floorLabel->setNum(this->nowFloor);
+        }
+        if (i == 2) {
+            this->statusLabel->setText("DOWN");
+            //这里将该线程暂停一定时间
+            QTime t;
+            t.start();
+            while(t.elapsed()<1000)
+                QCoreApplication::processEvents();
+            if (this->status != -1) {
+                this->display->button(nowFloor-1)->setChecked(false);
+                this->display->button(nowFloor-1)->setEnabled(false);
+                this->nowFloor -= 1;
+                this->display->button(nowFloor-1)->setEnabled(true);
+                this->display->button(nowFloor-1)->setChecked(true);
+                this->floorLabel->setNum(this->nowFloor);
+            }
+        }
     }
 }
 
@@ -134,6 +146,14 @@ void Elevator::eleMove(int i) {
 void Elevator::eleScheduler() {
     while (1) {
         QCoreApplication::processEvents();
+
+        if (this->run == -1) {
+            break;
+        }
+
+        if (!this->display->button(nowFloor-1)->isChecked()) {
+            this->display->button(nowFloor-1)->setChecked(true);
+        }
         //说明现在电梯没有移动
         if (status == 0) {
             //查找离电梯最近的请求

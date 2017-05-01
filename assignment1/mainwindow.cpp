@@ -22,18 +22,29 @@ MainWindow::MainWindow(QWidget *parent) :
     this->initButtonGroup();
     for (int i = 0; i < 5; i++) {
         ele[i]->collectUpAndDown(this->up, this->down);
-        //初始的时候，电梯默认正常运行，run键无法按下
-        ele[i]->runAndStop->button(0)->setEnabled(false);
+        //初始的时候，电梯默认处于ERROR状态，不能运行
+        ele[i]->runAndStop->button(1)->setEnabled(false);
+        for (int j = 0; j < 20; j++) {
+            ele[i]->eleFloor->button(j)->setEnabled(false);
+        }
     }
     //初始化其他的标记
     for (int i = 0; i <=20; i++) {
         this->isUpAsked[i] = 0;
         this->isDownAsked[i] = 0;
     }
-    //初始化第一层的显示
+    //初始化所有层的显示
     for (int i = 0; i < 5; i++) {
-        ele[i]->display->button(0)->setChecked(true);
+        for (int j = 0; j < 20; j++) {
+            ele[i]->display->button(j)->setEnabled(false);
+        }
     }
+//    //初始化第一层的显示
+//    for (int i = 0; i < 5; i++) {
+//        ele[i]->display->button(0)->setEnabled(true);
+//        ele[i]->display->button(0)->setChecked(true);
+//    }
+
     r = 0;
     QThread *t[5];
 
@@ -72,20 +83,30 @@ void MainWindow::setUpFloor(int i) {
     if (ele[0]->status == -1 && ele[1]->status == -1 && ele[2]->status == -1 && ele[3]->status == -1 && ele[4]->status == -1) {
         this->up->button(i)->setChecked(false);
         this->isUpAsked[i+1] = 0;
+        return;
     }
 
     int temp = -1;
+    int lastEle = 0;
     //选择最优的电梯
 
     //先查找是否有不动的电梯
     for (int j = 0; j < 5; j++) {
-        if (ele[j]->status == 0)
-            temp = j;
+        if (ele[j]->status == 0) {
+//            cout << j << " " << ele[j]->nowFloor << " " << lastEle << " " << ele[lastEle]->nowFloor << endl;
+            if (abs((i+1) - ele[j]->nowFloor) <= abs((i+1) - ele[lastEle]->nowFloor)) {
+                temp = j;
+                lastEle = j;
+            }
+        }
+
     }
+
 
     //有不动的电梯
     if (temp != -1) {
         this->isUpAsked[i+1] = 0;
+
         QObject::connect(this, SIGNAL(sendFloor(int,int,int)), ele[temp], SLOT(setAskedFloor(int,int,int)));
         emit sendFloor(1, i+1, temp);
 
@@ -102,9 +123,20 @@ void MainWindow::setUpFloor(int i) {
                 }
             }
         }
+        cout << r << " ";
         //这里有两种可能，一种是找到了一个正在靠近请求楼层的电梯，那么r的值对于该电梯
         //另一种是没有满足条件的电梯，那么则循环地选择一个电梯去响应请求
         this->isUpAsked[i+1] = 0;
+        while (ele[r]->run == -1) {
+//            cout << r << " ";
+            if (r == 4) {
+                r = 0;
+            }
+            else {
+               r++;
+            }
+        }
+        cout << endl;
         QObject::connect(this, SIGNAL(sendFloor(int,int,int)), ele[r], SLOT(setAskedFloor(int,int,int)));
         emit sendFloor(1, i+1, r);
         if (r == 4) {
@@ -128,19 +160,28 @@ void MainWindow::setDownFloor(int i) {
     if (ele[0]->status == -1 && ele[1]->status == -1 && ele[2]->status == -1 && ele[3]->status == -1 && ele[4]->status == -1) {
         this->down->button(i)->setChecked(false);
         this->isDownAsked[i+1] = 0;
+        return;
     }
 
     int temp = -1;
+    int lastEle = 0;
     //选择最优的电梯
 
     //先查找是否有不动的电梯
     for (int j = 0; j < 5; j++) {
-        if (ele[j]->status == 0)
-            temp = j;
+        if (ele[j]->status == 0) {
+//            cout << j << " " << ele[j]->nowFloor << " " << lastEle << " " << ele[lastEle]->nowFloor << endl;
+            if (abs((i+1) - ele[j]->nowFloor) <= abs((i+1) - ele[lastEle]->nowFloor)) {
+                temp = j;
+                lastEle = j;
+            }
+        }
     }
+
     //有不动的电梯
     if (temp != -1) {
         this->isDownAsked[i+1] = 0;
+
         QObject::connect(this, SIGNAL(sendFloor(int,int,int)), ele[temp], SLOT(setAskedFloor(int,int,int)));
         emit sendFloor(2, i+1, temp);
 
@@ -154,9 +195,20 @@ void MainWindow::setDownFloor(int i) {
                 }
             }
         }
+        cout << r << " ";
         //这里有两种可能，一种是找到了一个正在靠近请求楼层的电梯，那么r的值对于该电梯
         //另一种是没有满足条件的电梯，那么则循环地选择一个电梯去响应请求
         this->isDownAsked[i+1] = 0;
+        while (ele[r]->run == -1) {
+//            cout << r << " ";
+            if (r == 4) {
+                r = 0;
+            }
+            else {
+               r++;
+            }
+        }
+        cout << endl;
         QObject::connect(this, SIGNAL(sendFloor(int,int,int)), ele[r], SLOT(setAskedFloor(int,int,int)));
         emit sendFloor(2, i+1, r);
         if (r == 4) {

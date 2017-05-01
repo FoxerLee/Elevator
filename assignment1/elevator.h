@@ -35,8 +35,9 @@ public:
         this->floorLabel = floorLabel;
 
         this->nowFloor = 1;
-        this->status = 0;
+        this->status = -1;
         this->door = 0;
+        this->run = -1;
 
 
     }
@@ -72,6 +73,8 @@ protected:
     int door;
     //表示电梯现在是在哪一层楼
     int nowFloor;
+    //表示电梯是否关闭
+    int run;
 
 
     QLabel *doorLabel;

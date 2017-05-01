@@ -28,6 +28,8 @@ public:
     void initButtonGroup();
     void checkAskedFloor();
 
+
+
 private:
     Ui::MainWindow *ui;
 

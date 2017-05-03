@@ -7,6 +7,7 @@
 \usepackage{array}
 \usepackage{makecell}
 \usepackage{url}
+\usepackage{float}
 
 %标题缩进
 %\usepackage[bf, small]{titlesec}
@@ -186,7 +187,8 @@ operating system,  Spring 2017\par % Location and year
 
 （4）同时，电梯到达一层后，会监测其上方（或下方）是否还有请求。如果有，电梯继续上行一层；如果没有，则转化为闲置状态。
 
-\vspace{3em}
+
+\subsection{调度算法示意图}
 
 
 \begin{figure}[!h]
@@ -196,9 +198,91 @@ operating system,  Spring 2017\par % Location and year
 \end{figure}
 
 
+\clearpage
 
+\section{系统实现}
+根据需求分析，可以设计电梯系统的界面如下：
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.77\textwidth]{2.png}
+\caption{系统界面图}
+\end{figure}
 
+该界面可分为6个部分，左边5个部分对应5个电梯，最右边为外部请求按钮。
 
+\subsection{电梯界面}
+电梯界面各部分表达的内容如下：
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.14\textwidth]{3.png}
+\caption{电梯界面图}
+\end{figure}
+
+\clearpage
+每一部电梯在初始时均为不运行，即“STOP”状态。按下“RUN”按钮后，电梯启动，且左侧显示电梯当前所在楼层：
+
+ \begin{figure}[H]  
+ \centering
+  \subfigure[电梯不运行状态]{
+    \label{fig:subfig:a} %% label for first subfigure
+    \includegraphics[width=0.13\textwidth]{4.PNG}}
+  \hspace{0.5in}
+  \subfigure[电梯运行状态]{
+    \label{fig:subfig:b} %% label for second subfigure
+    \includegraphics[width=0.13\textwidth]{5.PNG}}
+   
+  \caption{电梯状态示意图}
+  \label{fig:subfig} %% label for entire figure
+ \end{figure}
+
+当电梯启动，处于运行状态后，即可正常响应、实现请求，如下图：
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.78\textwidth]{6.png}
+\caption{电梯运行界面}
+\end{figure}
+
+\subsection{外部按钮界面}
+界面最右边为外部请求按钮界面，各部分表达的内容如下：
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.15\textwidth]{7.png}
+\caption{外部按钮界面图}
+\end{figure}
+
+当有电梯处于运行状态时，即可响应外部按钮发送的请求，如下图：
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.25\textwidth]{8.png}
+\caption{电梯响应外部请求}
+\end{figure}
+
+\subsection{演示视频}
+具体运行效果，可见提交文件中的演示视频。
+
+\subsection{注意事项}
+（1）当电梯在运行过程按下“STOP”按钮，会使该电梯接收到的所有请求作废，电梯停于当前楼层，且不再响应请求。
+
+（2）应确保所有电梯都处于不运行，即“STOP”状态，再关闭程序，否则可能出现异常关闭。
+
+\vspace{3em}
+\section{开发环境}
+\begin{itemize}
+	\item 系统：macOS Sierra (version 10.12.4)
+	\item IDE：Qt Creator 4.2.1, Based on Qt 5.8.0 (Clang 7.0 (Apple), 64 bit)
+	\item 语言： C++
+\end{itemize}
+
+\vspace{3em}
+\section{提交内容}
+\begin{itemize}
+	\item 源代码
+	\item assignment1.app 可执行文件（需在mac系统下使用）
+	\item assignment1.dmg 安装包（需在mac系统下使用）
+	\item 说明文档
+	\item 演示视频
+\end{itemize}
 
 \end{CJK}
 \end{document}

@@ -366,8 +366,10 @@ void MainWindow::initButtonGroup() {
     this->up->addButton(ui->up_18, 17);
     this->up->addButton(ui->up_19, 18);
     this->up->addButton(ui->up_20, 19);
+    this->up->button(19)->setEnabled(false);
 
     this->down->addButton(ui->down_1, 0);
+    this->down->button(0)->setEnabled(false);
     this->down->addButton(ui->down_2, 1);
     this->down->addButton(ui->down_3, 2);
     this->down->addButton(ui->down_4, 3);

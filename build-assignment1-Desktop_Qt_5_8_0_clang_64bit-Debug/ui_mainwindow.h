@@ -2586,16 +2586,16 @@ public:
         four_stop->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
         five_run->setText(QApplication::translate("MainWindow", "RUN", Q_NULLPTR));
         five_stop->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
-        label_22->setText(QApplication::translate("MainWindow", "\345\244\226\351\203\250\346\214\211\351\222\256", Q_NULLPTR));
-        one_status->setText(QApplication::translate("MainWindow", "STAY", Q_NULLPTR));
+        label_22->setText(QApplication::translate("MainWindow", "\347\224\265\346\242\257\345\205\250\351\203\250\345\201\234\346\255\242\357\274\214\345\206\215\345\205\263\351\227\255\347\250\213\345\272\217", Q_NULLPTR));
+        one_status->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
         one_door->setText(QApplication::translate("MainWindow", "CLOSED", Q_NULLPTR));
-        two_status->setText(QApplication::translate("MainWindow", "STAY", Q_NULLPTR));
+        two_status->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
         two_door->setText(QApplication::translate("MainWindow", "CLOSED", Q_NULLPTR));
-        three_status->setText(QApplication::translate("MainWindow", "STAY", Q_NULLPTR));
+        three_status->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
         three_door->setText(QApplication::translate("MainWindow", "CLOSED", Q_NULLPTR));
-        four_status->setText(QApplication::translate("MainWindow", "STAY", Q_NULLPTR));
+        four_status->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
         four_door->setText(QApplication::translate("MainWindow", "CLOSED", Q_NULLPTR));
-        five_status->setText(QApplication::translate("MainWindow", "STAY", Q_NULLPTR));
+        five_status->setText(QApplication::translate("MainWindow", "STOP", Q_NULLPTR));
         five_door->setText(QApplication::translate("MainWindow", "CLOSED", Q_NULLPTR));
     } // retranslateUi
 

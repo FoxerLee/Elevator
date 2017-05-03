@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->initButtonGroup();
     for (int i = 0; i < 5; i++) {
         ele[i]->collectUpAndDown(this->up, this->down);
-        //初始的时候，电梯默认处于ERROR状态，不能运行
+        //初始的时候，电梯默认处于STOP状态，不能运行
         ele[i]->runAndStop->button(1)->setEnabled(false);
         for (int j = 0; j < 20; j++) {
             ele[i]->eleFloor->button(j)->setEnabled(false);
@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //        ele[i]->display->button(0)->setChecked(true);
 //    }
 
+    //初始化线程，将五个电梯放入五个线程当中
     r = 0;
     QThread *t[5];
 
@@ -79,7 +80,7 @@ void MainWindow::setUpFloor(int i) {
         this->up->button(i)->setChecked(true);
     }
     this->isUpAsked[i+1] = 1;    
-    //首先检查是否所有电梯均处于ERROR状态
+    //首先检查是否所有电梯均处于STOP状态
     if (ele[0]->status == -1 && ele[1]->status == -1 && ele[2]->status == -1 && ele[3]->status == -1 && ele[4]->status == -1) {
         this->up->button(i)->setChecked(false);
         this->isUpAsked[i+1] = 0;
@@ -156,7 +157,7 @@ void MainWindow::setDownFloor(int i) {
     if(!this->down->button(i)->isChecked()) {
         this->down->button(i)->setChecked(true);
     }
-    //首先检查是否所有电梯均处于ERROR状态
+    //首先检查是否所有电梯均处于STOP状态
     if (ele[0]->status == -1 && ele[1]->status == -1 && ele[2]->status == -1 && ele[3]->status == -1 && ele[4]->status == -1) {
         this->down->button(i)->setChecked(false);
         this->isDownAsked[i+1] = 0;

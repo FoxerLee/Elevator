@@ -81,7 +81,7 @@ void Elevator::eleRun(int i) {
 
         }
         this->status = -1;
-        this->statusLabel->setText("ERROR");
+        this->statusLabel->setText("STOP");
         this->display->button(nowFloor-1)->setChecked(false);
         this->display->button(nowFloor-1)->setEnabled(false);
         this->run = -1;

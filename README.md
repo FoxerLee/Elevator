@@ -1,5 +1,9 @@
 ## 操作系统课程项目—电梯系统
 
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://github.com/FoxerLee/iOS_sitp/blob/master/license)
+
+
+
 ### 项目要求
 
 某一栋楼共有20层，五部互相关联的电梯，基于线程的思想，模拟实现一个电梯调度的程序。

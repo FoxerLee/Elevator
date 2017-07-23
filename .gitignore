@@ -1,10 +1,10 @@
 #Latex
-.texpadtmp
-.tex
+*.texpadtmp
+*.tex
 
 #images
-.png
-.jpg
+*.png
+*.jpg
 
 #others
-.mdj
+*.mdj

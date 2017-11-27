@@ -1,7 +1,7 @@
 ## 操作系统课程项目—电梯系统
 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://github.com/FoxerLee/iOS_sitp/blob/master/license)
-
+[![BCH compliance](https://bettercodehub.com/edge/badge/FoxerLee/Elevator?branch=master)](https://bettercodehub.com/)
 
 
 ### 项目要求
